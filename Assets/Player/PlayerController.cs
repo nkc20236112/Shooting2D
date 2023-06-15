@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector3 dir = Vector3.zero;
+
+    Animator  anim;
+
+    public GameObject ShotPre;
+
     void Start()
     {
-        
+        anim=GetComponent<Animator>();
     }
 
     void Update()
@@ -25,5 +30,26 @@ public class PlayerController : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, -9f, 9f);
         pos.y = Mathf.Clamp(pos.y, -5f, 5f);
         transform.position = pos;
+
+        //アニメーションの設定
+        if (dir.y == 0)
+        {
+            //アニメショーンクリップ [Player] 再生
+            anim.Play("Player");
+        }
+        else if (dir.y == 1)
+        {
+            anim.Play("PlayerL");
+        }
+        else if (dir.y == -1)
+        {
+            anim.Play("PlayerR");
+        }
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject tama = Instantiate(ShotPre);
+            tama.transform.position = transform.position;
+        }
     }
 }
