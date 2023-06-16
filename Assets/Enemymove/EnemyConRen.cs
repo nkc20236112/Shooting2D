@@ -11,18 +11,17 @@ public class EnemyConRen : MonoBehaviour
     void Start()
     {
         //プレイヤーの位置に突っ込む
-        //player = GameObject.Find("Player").transform;
-        //dir = player.position - transform.position;
-
-    }
-
-    void Update()
-    {
-        //プレイヤー見つけて追尾
         player = GameObject.Find("Player").transform;
         dir = player.position - transform.position;
-        transform.position += dir.normalized * speed * Time.deltaTime;
-
-        //transform.position += dir.normalized * speed * Time.deltaTime;
     }
 }
+
+    //void Update()
+    //{
+    //    //プレイヤー見つけて追尾
+    //    //player = GameObject.Find("Player").transform;
+    //    //dir = player.position - transform.position;
+    //    //transform.position += dir.normalized * speed * Time.deltaTime;
+
+    //    //transform.position += dir.normalized * speed * Time.deltaTime;
+    //}

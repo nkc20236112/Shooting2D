@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     Animator  anim;
 
+    public float power;
+
     public GameObject ShotPre;
 
     void Start()
@@ -46,10 +48,16 @@ public class PlayerController : MonoBehaviour
             anim.Play("PlayerR");
         }
 
+        if(Input.GetKey(KeyCode.C)) 
+        {
+            power += 1;
+        }
+
         if(Input.GetKeyDown(KeyCode.Z))
         {
             GameObject tama = Instantiate(ShotPre);
             tama.transform.position = transform.position;
+
         }
     }
 }
