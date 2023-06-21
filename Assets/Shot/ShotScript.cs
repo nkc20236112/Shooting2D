@@ -33,6 +33,8 @@ public class ShotScript : MonoBehaviour
         // “G‚¾‚Á‚½‚ç
         if (col.gameObject.tag == "Enemy")
         {
+            GameObject director = GameObject.Find("GameDirector");
+            GameDirector.kyori += 200;
             Destroy(gameObject);
         }
     }

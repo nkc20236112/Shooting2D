@@ -8,13 +8,12 @@ using UnityEngine.SceneManagement;
 public class GameDirector : MonoBehaviour
 {
     public Text kyorirabel;     //距離を表示するUI
-    int  kyori;                 //距離を保存する
 
-    public static float lastTime;             //残り時間を保存
+    float lastTime;             //残り時間を保存
 
     public Image timeGauge;     //タイムゲージを保存する変数
 
-    public float damage;
+    public static int kyori;
 
     void Start()
     {
@@ -25,20 +24,23 @@ public class GameDirector : MonoBehaviour
     void Update()
     {
         //  残り時間を減らす処理
-        lastTime -= Time.deltaTime + damage;
+        lastTime -= Time.deltaTime;
         timeGauge.fillAmount = lastTime / 100f;
         //Debug.Log(lastTime);
-
-        damage = 0;
 
         //残り時間が0になったらリロード
         if (lastTime < 0)
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("TitleScene");
         }
 
         //進んだ距離を表示
+        if (kyori < 0)
+        {
+            kyori = 0;
+        }
+
         kyori++;
-        kyorirabel.text = kyori.ToString("D6")+"km";
+        kyorirabel.text = "進んだ距離" + kyori.ToString("D6") + "km";
     }
 }

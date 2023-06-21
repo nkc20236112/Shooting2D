@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject ShotPre;
 
+    public float speed = 7;
+
     void Start()
     {
         anim=GetComponent<Animator>();
@@ -19,8 +21,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        float speed = 5;
 
         //ˆÚ“®•ûŒü‚ğƒŠƒZƒbƒg
         dir.x = Input.GetAxisRaw("Horizontal");
@@ -57,7 +57,21 @@ public class PlayerController : MonoBehaviour
         {
             GameObject tama = Instantiate(ShotPre);
             tama.transform.position = transform.position;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //Õ“Ë‚µ‚½‚ç‹——£‚ğŒ¸‚ç‚·
+        if (col.gameObject.tag == "Enemy")
+        {
+            GameObject director = GameObject.Find("GameDirector");
 
+            GameDirector.kyori -= 1000;
+        }
+        if (col.tag == "EnemyShot")
+        {
+            GameObject director = GameObject.Find("GameDirector");
+            GameDirector.kyori -= 500;
         }
     }
 }
