@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         // エネミータイプ２だけ縦移動（サインカーブ）追加
         if (enemyType == 2)
         {
-            dir.y = Mathf.Sin(rad + Time.time * 5f);
+            dir.y = Mathf.Sin(rad + Time.time * 5f); //時間を掛けてずらしている
         }
 
         //現在地に移動量を加算

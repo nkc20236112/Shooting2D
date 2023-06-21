@@ -22,16 +22,17 @@ public class EnemyGenerator : MonoBehaviour
 
         if (delta > span)
         {
-            //“G‚ğ¶¬‚·‚é
-            GameObject go = Instantiate(enemyPre);
-            float py = Random.Range(-6f, 7f);
-            go.transform.position = new Vector3(10, py, 10);
-
             //ŠÔŒo‰ß‚ğ•Û‘¶‚µ‚Ä‚¢‚é•Ï”‚ğ‚OƒNƒŠƒA
             delta = 0;
 
             //“Go‚·ŠÔŠu‚ğ™X‚É­‚È‚­‚·‚é
             span -= (span > 0.5f) ? 0.01f : 0f;
+
+            //“G‚ğ¶¬‚·‚é
+            GameObject go = Instantiate(enemyPre);
+            float py = Random.Range(-6f, 7f);
+            go.transform.position = new Vector3(10, py, 10);
+
         }
     }
 }

@@ -8,15 +8,33 @@ public class PlayerController : MonoBehaviour
 
     Animator  anim;
 
-    public float power;
-
     public GameObject ShotPre;
 
-    public float speed = 7;
+    public float speed = 8;
+
+    float timer;    // 自弾の発射間隔計算用
+
+    GameDirector gd;            // GameDirectorコンポーネントを保存
+
+    public static int shotLevel;  // 武器のレベル
+    public int ShotLevel;
+    //{
+    //    set
+    //    {
+    //        shotLevel = value;
+    //        shotLevel = Mathf.Clamp(shotLevel, 0, 12);
+    //    }
+    //    get { return shotLevel; }
+    //}
 
     void Start()
     {
         anim=GetComponent<Animator>();
+        shotLevel = 0;  // 弾レベル
+        gd = GameObject.Find("GameDirector").GetComponent<GameDirector>();
+        timer = 0;  // 時間初期化
+
+
     }
 
     void Update()
@@ -33,6 +51,35 @@ public class PlayerController : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, -5f, 5f);
         transform.position = pos;
 
+        // CキーでshotLevel変更(デバッグ用)
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            shotLevel = (shotLevel + 1) % 13;
+        }
+
+        // Zキーが押されているとき弾を発射
+        timer += Time.deltaTime;
+        if (timer >= 0.3f && Input.GetKey(KeyCode.Z))
+        {
+            timer = 0;
+            shotLevel = (shotLevel < 0) ? 0 : shotLevel;
+
+            for (int i = -shotLevel; i < shotLevel + 1; i++)
+            {
+                // 弾の生成位置はプレーヤーと同じ場所
+                Vector3 p = transform.position;
+
+                // プレーヤーの回転角度を取得し、15度ずつずらした方向に弾を回転させる
+                //Vector3 r = transform.rotation.eulerAngles + new Vector3(0, 0, 15f * i);
+                //Quaternion rot = Quaternion.Euler(r);
+                Quaternion rot = Quaternion.identity;
+                rot.eulerAngles = transform.rotation.eulerAngles + new Vector3(0, 0, 15f * i);
+
+                // 位置と回転情報をセットして生成
+                Instantiate(ShotPre, p, rot);
+            }
+        }
+
         //アニメーションの設定
         if (dir.y == 0)
         {
@@ -47,17 +94,6 @@ public class PlayerController : MonoBehaviour
         {
             anim.Play("PlayerR");
         }
-
-        if(Input.GetKey(KeyCode.C)) 
-        {
-            power += 1;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            GameObject tama = Instantiate(ShotPre);
-            tama.transform.position = transform.position;
-        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -66,12 +102,12 @@ public class PlayerController : MonoBehaviour
         {
             GameObject director = GameObject.Find("GameDirector");
 
-            GameDirector.kyori -= 1000;
+            gd.Kyori -= 1000;
         }
         if (col.tag == "EnemyShot")
         {
             GameObject director = GameObject.Find("GameDirector");
-            GameDirector.kyori -= 500;
+            gd.Kyori -= 500;
         }
     }
 }
