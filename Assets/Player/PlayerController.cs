@@ -5,19 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector3 dir = Vector3.zero;
-
+    public float Speed;
+    float timer;    // 自弾の発射間隔計算用
+    GameDirector gd;            // GameDirectorコンポーネントを保存
     Animator  anim;
 
     public GameObject ShotPre;
-
-    public float speed = 8;
-
-    float timer;    // 自弾の発射間隔計算用
-
-    GameDirector gd;            // GameDirectorコンポーネントを保存
-
     public static int shotLevel;  // 武器のレベル
     public int ShotLevel;
+
     //{
     //    set
     //    {
@@ -29,21 +25,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        anim=GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         shotLevel = 0;  // 弾レベル
         gd = GameObject.Find("GameDirector").GetComponent<GameDirector>();
         timer = 0;  // 時間初期化
-
-
+        Speed = 10;
     }
 
-    void Update()
+void Update()
     {
 
         //移動方向をリセット
         dir.x = Input.GetAxisRaw("Horizontal");
         dir.y = Input.GetAxisRaw("Vertical");
-        transform.position += dir.normalized * speed * Time.deltaTime;
+        transform.position += dir.normalized * Speed * Time.deltaTime;
 
         //画面内移動制限
         Vector3 pos=transform.position;
@@ -109,5 +104,19 @@ public class PlayerController : MonoBehaviour
             GameObject director = GameObject.Find("GameDirector");
             gd.Kyori -= 500;
         }
+    }
+
+    public void ShotLevelUp()   //shotlevelを増やす関数
+    {
+        shotLevel++;
+    }
+    public void SpeedLevelDown()    //speedlevelを増やす関数
+    {
+        Speed+=2;
+    }
+    public void LevelReset()    //levelリセットの関数
+    {
+        shotLevel = 0;
+        Speed = 5;
     }
 }

@@ -47,16 +47,15 @@ public class ItemController : MonoBehaviour
             // アイテムの種類別に処理を変更
             if (itemType == 0)       // 赤：弾レベル＋１
             {
-                pCon.ShotLevel += 1;
+                pCon.ShotLevelUp(); //player ControllerからShotLevelUpの関数を呼び出し
             }
             else if (itemType == 1)  // 緑：スピード＋５
             {
-                pCon.speed += 3;
+                pCon.SpeedLevelDown();
             }
             else if (itemType == 2)  // 青：弾レベル-　スピード
             {
-                pCon.speed = 5;
-                pCon.ShotLevel = 1;
+                pCon.LevelReset();
             }
 
             // 自分（アイテム）削除

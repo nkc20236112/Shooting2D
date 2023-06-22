@@ -6,22 +6,19 @@ public class ShotScript : MonoBehaviour
 {
     Animator anim;
 
-    public float speed;
+    float speed;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         //éıñΩ4ïb
         Destroy(gameObject, 4f);
-
+        speed = 10f;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        //âÊñ ì‡à⁄ìÆêßå¿
-        Vector3 pos = new Vector3(speed, 0, 0);
-       
+    {       
         transform.position += transform.up * speed * Time.deltaTime;
 
     }
