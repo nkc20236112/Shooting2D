@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         delta = 0;
         span = 1f;
+        
     }
 
     void Update()
@@ -30,9 +32,9 @@ public class EnemyGenerator : MonoBehaviour
 
             //ìGÇê∂ê¨Ç∑ÇÈ
             GameObject go = Instantiate(enemyPre);
-            float py = Random.Range(-6f, 7f);
-            go.transform.position = new Vector3(10, py, 10);
 
+            float py = UnityEngine.Random.Range(-6f, 7f);
+            go.transform.position = new Vector3(10, py, 10);
         }
     }
 }

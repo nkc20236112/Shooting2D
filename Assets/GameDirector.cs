@@ -16,10 +16,12 @@ public class GameDirector : MonoBehaviour
     public Image timeGauge;     //タイムゲージを保存する変数
 
     public GameObject itemPre; // アイテムプレハブ保存
+    public GameObject bossPre;
 
     public static int kyori;
 
     PlayerController playerCon;
+
 
     public int Kyori
     {
@@ -34,6 +36,7 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
+        //BgmManager.Instance.Play("maou_game_medley01");
         kyori = 0;
         lastTime = 60;         //残り時間100秒
     }
@@ -57,11 +60,17 @@ public class GameDirector : MonoBehaviour
         // プレーヤーの弾レベルを取得して表示
         //shotLabel.text = "ShotLevel " + playerCon.ShotLevel.ToString("D2");
 
+        if (lastTime == 30)
+        {
+            GameObject go = Instantiate(bossPre);
+            go.transform.position = new Vector3(0, 0, 0);
+            Debug.Log(111);
+        }
+
         //残り時間が0になったらタイトルへ
         if (lastTime < 0)
         {
             SceneManager.LoadScene("TitleScene");
         }
-
     }
 }
