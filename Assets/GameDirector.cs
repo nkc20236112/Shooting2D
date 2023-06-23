@@ -8,20 +8,13 @@ using UnityEngine.SceneManagement;
 public class GameDirector : MonoBehaviour
 {
     public Text shotLabel;  // 弾の強さ表示テキストオブジェクト保存
-
     public Text kyorirabel;     //距離を表示するUI
-
-    float lastTime;             //残り時間を保存
-
     public Image timeGauge;     //タイムゲージを保存する変数
-
     public GameObject itemPre; // アイテムプレハブ保存
     public GameObject bossPre;
-
     public static int kyori;
-
+    float lastTime;             //残り時間を保存
     PlayerController playerCon;
-
 
     public int Kyori
     {

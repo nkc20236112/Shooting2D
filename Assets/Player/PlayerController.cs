@@ -6,13 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     Vector3 dir = Vector3.zero;
     public float Speed;
+    public int ShotLevel;
+    public static int shotLevel;  // 武器のレベル
+    public GameObject ShotPre;
     float timer;    // 自弾の発射間隔計算用
     GameDirector gd;            // GameDirectorコンポーネントを保存
     Animator  anim;
-
-    public GameObject ShotPre;
-    public static int shotLevel;  // 武器のレベル
-    public int ShotLevel;
 
     //{
     //    set
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
 void Update()
     {
-
         //移動方向をリセット
         dir.x = Input.GetAxisRaw("Horizontal");
         dir.y = Input.GetAxisRaw("Vertical");

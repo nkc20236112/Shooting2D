@@ -5,9 +5,7 @@ using UnityEngine;
 public class ShotScript : MonoBehaviour
 {
     Animator anim;
-
     float speed;
-
     void Start()
     {
         anim = GetComponent<Animator>();
