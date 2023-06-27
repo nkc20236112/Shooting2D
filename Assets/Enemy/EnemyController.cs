@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    float speed = 5;            //移動速度
+    float speed = 5;
     public GameObject ExplosionPre;// 爆発のプレハブを保存
     public GameObject ShotPre;  // 弾のプレハブを保存
     Vector3 dir;                // 移動方向を保存
@@ -15,8 +15,6 @@ public class EnemyController : MonoBehaviour
     float shotInterval = 2f;    // 弾の発射間隔
     GameDirector gd;            // GameDirectorコンポーネントを保存
     Transform player;   // プレーヤーのトランスフォームコンポーネントを保存
-
-
 
     void Start()
     {
@@ -31,10 +29,7 @@ public class EnemyController : MonoBehaviour
 
         // GameDirectorコンポーネントを取得
         //gd = GameObject.Find("GameDirector").GetComponent<GameDirector>();
-
         Destroy(gameObject, 6);		    // 寿命
-
-
     }
 
     void Update()

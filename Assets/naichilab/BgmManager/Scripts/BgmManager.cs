@@ -63,7 +63,7 @@ public class BgmManager : MonoBehaviour
 		/// FadeOut中、もしくは再生待機中のAudioSource
 		/// </summary>
 		public AudioSource SubAudioSource {
-				get { 
+				get {
 						//bgmSourcesのうち、CurrentAudioSourceでない方を返す
 						if (this.AudioSources == null)
 								return null;
@@ -177,7 +177,7 @@ public class BgmManager : MonoBehaviour
 		public void Play (string bgmName)
 		{
 				if (!this.AudioClipDict.ContainsKey (bgmName)) {
-						Debug.LogError (string.Format ("BGM名[{0}]が見つかりません。", bgmName));  
+						Debug.LogError (string.Format ("BGM名[{0}]が見つかりません。", bgmName));
 						return;
 				}
 
@@ -267,7 +267,7 @@ public class BgmManager : MonoBehaviour
 		/// <param name="fromVolume">フェードアウト開始前の音量</param>
 		/// <param name="toVolume">フェードアウト完了時の音量</param>
 		private IEnumerator fadeOut (AudioSource bgm, float timeToFade, float fromVolume, float toVolume)
-		{ 
+		{
 				float startTime = Time.time;
 				while (true) {
 						float spentTime = Time.time - startTime;

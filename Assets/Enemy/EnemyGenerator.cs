@@ -14,7 +14,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         delta = 0;
         span = 1f;
-        
+
     }
 
     void Update()

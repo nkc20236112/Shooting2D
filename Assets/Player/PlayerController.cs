@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,15 +15,6 @@ public class PlayerController : MonoBehaviour
     GameDirector gd;            // GameDirectorコンポーネントを保存
     Animator  anim;
 
-    //{
-    //    set
-    //    {
-    //        shotLevel = value;
-    //        shotLevel = Mathf.Clamp(shotLevel, 0, 12);
-    //    }
-    //    get { return shotLevel; }
-    //}
-
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -31,7 +24,7 @@ public class PlayerController : MonoBehaviour
         Speed = 10;
     }
 
-void Update()
+    void Update()
     {
         //移動方向をリセット
         dir.x = Input.GetAxisRaw("Horizontal");
@@ -63,8 +56,6 @@ void Update()
                 Vector3 p = transform.position;
 
                 // プレーヤーの回転角度を取得し、15度ずつずらした方向に弾を回転させる
-                //Vector3 r = transform.rotation.eulerAngles + new Vector3(0, 0, 15f * i);
-                //Quaternion rot = Quaternion.Euler(r);
                 Quaternion rot = Quaternion.identity;
                 rot.eulerAngles = transform.rotation.eulerAngles + new Vector3(0, 0, 15f * i);
 
@@ -93,14 +84,13 @@ void Update()
         //衝突したら距離を減らす
         if (col.gameObject.tag == "Enemy")
         {
+            GameDirector.hp -= 20;
             GameObject director = GameObject.Find("GameDirector");
-
-            gd.Kyori -= 1000;
         }
         if (col.tag == "EnemyShot")
         {
+            GameDirector.hp -= 10;
             GameObject director = GameObject.Find("GameDirector");
-            gd.Kyori -= 500;
         }
     }
 

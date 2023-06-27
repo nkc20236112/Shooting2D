@@ -7,62 +7,66 @@ using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
-    public Text shotLabel;  // 弾の強さ表示テキストオブジェクト保存
-    public Text kyorirabel;     //距離を表示するUI
-    public Image timeGauge;     //タイムゲージを保存する変数
+    public Text scoreLabel;     //距離を表示するUI
+    public Image hpGauge;     //ライフゲージを保存する変数
     public GameObject itemPre; // アイテムプレハブ保存
     public GameObject bossPre;
-    public static int kyori;
-    float lastTime;             //残り時間を保存
+    public static int score;
+    public static float hp;
+    bool boss;
     PlayerController playerCon;
 
-    public int Kyori
+    public float Hp
     {
         set
         {
-            kyori = value;
+            hp = value;
             //値に制限をつけれる
-            kyori = Mathf.Clamp(kyori, 0, 999999);
+            hp = Mathf.Clamp(hp, 0, 100);
         }
-        get { return kyori; }
+        get {  return hp; }
     }
 
     void Start()
     {
-        //BgmManager.Instance.Play("maou_game_medley01");
-        kyori = 0;
-        lastTime = 60;         //残り時間100秒
+        BgmManager.Instance.Play("maou_game_medley01");
+        score = 0;
+        hp = 100f;
+        boss = false;
     }
 
     void Update()
     {
-        kyori++;
-        kyorirabel.text = "Score " + kyori.ToString("D6");
+        scoreLabel.text = "Score " + score.ToString("D6");
 
         // 距離が600kmで割り切れるときにアイテム出現
-        if (kyori % 50 == 0)
-        {
-            Instantiate(itemPre);
-        }
-        shotLabel.text = "ShotLevel " + PlayerController.shotLevel.ToString("D2");
+        //if ( 50 == 0)
+        //{
+        //    Instantiate(itemPre);
+        //}
         //  残り時間を減らす処理
-        lastTime -= Time.deltaTime;
-        timeGauge.fillAmount = lastTime / 60f;
+        //hpGauge.fillAmount -= hp;
         //Debug.Log(lastTime);
 
         // プレーヤーの弾レベルを取得して表示
         //shotLabel.text = "ShotLevel " + playerCon.ShotLevel.ToString("D2");
 
-        if (lastTime == 30)
+        hpGauge.fillAmount = hp / 100;
+        hp = Mathf.Clamp(hp,0, 100);
+
+        if (score >= 1000 && boss == false)
         {
+            BgmManager.Instance.Stop();
+            BgmManager.Instance.Play("maou_game_lastboss03");
+            boss = true;
             GameObject go = Instantiate(bossPre);
-            go.transform.position = new Vector3(0, 0, 0);
-            Debug.Log(111);
+            go.transform.position = new Vector3(6, 0, 0);
         }
 
         //残り時間が0になったらタイトルへ
-        if (lastTime < 0)
+        if (Hp <= 0)
         {
+            //sceneload.hp = Hp;
             SceneManager.LoadScene("TitleScene");
         }
     }

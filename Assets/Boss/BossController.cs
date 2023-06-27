@@ -6,11 +6,10 @@ public class BossController : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log(0000000);
     }
 
     void Update()
     {
-        
+
     }
 }

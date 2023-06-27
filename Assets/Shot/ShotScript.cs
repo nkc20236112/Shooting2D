@@ -16,7 +16,7 @@ public class ShotScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
         transform.position += transform.up * speed * Time.deltaTime;
 
     }
@@ -26,7 +26,7 @@ public class ShotScript : MonoBehaviour
         if (col.gameObject.tag == "Enemy")
         {
             GameObject director = GameObject.Find("GameDirector");
-            GameDirector.kyori += 200;
+            GameDirector.score += 200;
             Destroy(gameObject);
         }
     }

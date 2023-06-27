@@ -11,7 +11,8 @@ public class TitleDirector : MonoBehaviour
 
     void Start()
     {
-        scoreLabel.text = "Score\n" + GameDirector.kyori.ToString("D6");
+        //float a = sceneload.hp;
+        scoreLabel.text = "Score\n" + GameDirector.score.ToString("D6");
     }
 
     void Update()

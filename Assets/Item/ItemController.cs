@@ -14,7 +14,7 @@ public class ItemController : MonoBehaviour
         itemType = Random.Range(0, 3);  // アイテムの種類0～2
         speed = 5f;                     // 落下速度
 
-        // itemType=0:赤 / itemType=1:緑 / itemType=2:青　
+        // itemType=0:赤 / itemType=1:緑 / itemType=2:青
         Color[] col = { Color.red, Color.green, Color.blue };
         spRender = GetComponent<SpriteRenderer>();
         spRender.color = col[itemType];
