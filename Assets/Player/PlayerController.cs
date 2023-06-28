@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         shotLevel = 0;  // 弾レベル
         gd = GameObject.Find("GameDirector").GetComponent<GameDirector>();
         timer = 0;  // 時間初期化
-        Speed = 10;
+        Speed = 7;
     }
 
     void Update()
@@ -98,13 +98,13 @@ public class PlayerController : MonoBehaviour
     {
         shotLevel++;
     }
-    public void SpeedLevelDown()    //speedlevelを増やす関数
+    public void Heal()    //回復する関数
     {
-        Speed+=2;
+        GameDirector.hp += 30;
+        GameObject director = GameObject.Find("GameDirector");
     }
-    public void LevelReset()    //levelリセットの関数
+    public void SpeedLevelUp()    //speed増やす関数
     {
-        shotLevel = 0;
-        Speed = 5;
+        Speed += 1.5f;
     }
 }

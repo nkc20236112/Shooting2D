@@ -14,7 +14,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         delta = 0;
         span = 1f;
-
     }
 
     void Update()
@@ -34,7 +33,7 @@ public class EnemyGenerator : MonoBehaviour
             GameObject go = Instantiate(enemyPre);
 
             float py = UnityEngine.Random.Range(-6f, 7f);
-            go.transform.position = new Vector3(10, py, 10);
+            go.transform.position = new Vector3(11, py, 5);
         }
     }
 }

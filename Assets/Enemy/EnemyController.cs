@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     float speed = 5;
     public GameObject ExplosionPre;// 爆発のプレハブを保存
+    public GameObject ItemPre;  //アイテムプレハブ
     public GameObject ShotPre;  // 弾のプレハブを保存
     Vector3 dir;                // 移動方向を保存
     int enemyType;              // 敵の種類を保存
@@ -34,11 +35,6 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        //画面内移動制限
-        Vector3 pos = new Vector3(-speed, 0, 0);
-        pos.x = Mathf.Clamp(pos.x, -10f, 10f);
-        pos.y = Mathf.Clamp(pos.y, -6f, 6f);
-
         // エネミータイプ２だけ縦移動（サインカーブ）追加
         if (enemyType == 2)
         {
@@ -55,7 +51,6 @@ public class EnemyController : MonoBehaviour
             shotTime = 0;
             Instantiate(ShotPre, transform.position, transform.rotation);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -65,11 +60,15 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(ExplosionPre, transform.position, transform.rotation);
+            PlayerController.shotLevel--;
+            //PlayerController.Speed-=1;
+
         }
         if (col.tag == "Shot")
         {
             Destroy(gameObject);
             Instantiate(ExplosionPre, transform.position, transform.rotation);
+            Instantiate(ItemPre, transform.position, transform.rotation);
         }
     }
 }

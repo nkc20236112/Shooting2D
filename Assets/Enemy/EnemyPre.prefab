@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPre: {fileID: 3797353129503132034, guid: 1547d0441186acb4ebcb62ecc742d48b, type: 3}
+  ItemPre: {fileID: 1085754173431212131, guid: d95e09c95e2d1464380e6d6ecbfb4517, type: 3}
   ShotPre: {fileID: 8029837123707059870, guid: d3f8a92ca47a9104895457ba7b1d9466, type: 3}
 --- !u!50 &549892005375943246
 Rigidbody2D:

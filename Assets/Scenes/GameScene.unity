@@ -709,7 +709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreLabel: {fileID: 1040276609}
   hpGauge: {fileID: 1244757808}
-  itemPre: {fileID: 1085754173431212131, guid: d95e09c95e2d1464380e6d6ecbfb4517, type: 3}
   bossPre: {fileID: 9011793005530089870, guid: bfb5248a95096db4e961b999a66d87c7, type: 3}
 --- !u!4 &1345916848
 Transform:

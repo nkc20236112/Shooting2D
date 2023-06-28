@@ -9,7 +9,7 @@ public class GameDirector : MonoBehaviour
 {
     public Text scoreLabel;     //距離を表示するUI
     public Image hpGauge;     //ライフゲージを保存する変数
-    public GameObject itemPre; // アイテムプレハブ保存
+    //public GameObject itemPre; // アイテムプレハブ保存
     public GameObject bossPre;
     public static int score;
     public static float hp;
@@ -40,7 +40,7 @@ public class GameDirector : MonoBehaviour
         scoreLabel.text = "Score " + score.ToString("D6");
 
         // 距離が600kmで割り切れるときにアイテム出現
-        //if ( 50 == 0)
+        //if (score == 0)
         //{
         //    Instantiate(itemPre);
         //}
@@ -54,7 +54,7 @@ public class GameDirector : MonoBehaviour
         hpGauge.fillAmount = hp / 100;
         hp = Mathf.Clamp(hp,0, 100);
 
-        if (score >= 1000 && boss == false)
+        if (score >= 3000 && boss == false)
         {
             BgmManager.Instance.Stop();
             BgmManager.Instance.Play("maou_game_lastboss03");

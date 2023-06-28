@@ -7,32 +7,32 @@ public class ItemController : MonoBehaviour
     SpriteRenderer spRender;    // レンダラーコンポーネント取得
     Vector3 pos;                // 出現位置
     int itemType;               // アイテムの種類
-    float speed;                // 落下速度
+    //float speed;                // 落下速度
 
     void Start()
     {
         itemType = Random.Range(0, 3);  // アイテムの種類0～2
-        speed = 5f;                     // 落下速度
+        //speed = 0;                     // 落下速度
 
         // itemType=0:赤 / itemType=1:緑 / itemType=2:青
         Color[] col = { Color.red, Color.green, Color.blue };
         spRender = GetComponent<SpriteRenderer>();
         spRender.color = col[itemType];
 
-        // 出現位置
-        pos.x = Random.Range(-8f, 8f);
-        pos.y = 6f;
-        pos.z = 0;
-        transform.position = pos;
+        //// 出現位置
+        //pos.x = Random.Range(-8f, 8f);
+        //pos.y = 6f;
+        //pos.z = 0;
+        //transform.position = pos;
 
         // 寿命3秒
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 7f);
     }
 
     void Update()
     {
         // 下方向に speed m/s で移動
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        //transform.position += Vector3.down * speed * Time.deltaTime;
     }
 
     // 重なり判定
@@ -51,11 +51,11 @@ public class ItemController : MonoBehaviour
             }
             else if (itemType == 1)  // 緑：スピード＋５
             {
-                pCon.SpeedLevelDown();
+                pCon.Heal();
             }
             else if (itemType == 2)  // 青：弾レベル-　スピード
             {
-                pCon.LevelReset();
+                pCon.SpeedLevelUp();
             }
 
             // 自分（アイテム）削除
