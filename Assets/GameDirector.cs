@@ -54,7 +54,7 @@ public class GameDirector : MonoBehaviour
         hpGauge.fillAmount = hp / 100;
         hp = Mathf.Clamp(hp,0, 100);
 
-        if (score >= 3000 && boss == false)
+        if (score >= 200 && boss == false)
         {
             BgmManager.Instance.Stop();
             BgmManager.Instance.Play("maou_game_lastboss03");
@@ -67,6 +67,7 @@ public class GameDirector : MonoBehaviour
         if (Hp <= 0)
         {
             //sceneload.hp = Hp;
+            BgmManager.Instance.Stop();
             SceneManager.LoadScene("TitleScene");
         }
     }

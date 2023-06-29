@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class PlayerController : MonoBehaviour
@@ -84,8 +85,10 @@ public class PlayerController : MonoBehaviour
         //è’ìÀÇµÇΩÇÁãóó£Çå∏ÇÁÇ∑
         if (col.gameObject.tag == "Enemy")
         {
-            GameDirector.hp -= 20;
+            Time.timeScale = 0.00001f;
+            GameDirector.hp -= 10;
             GameObject director = GameObject.Find("GameDirector");
+            Time.timeScale = 1;
         }
         if (col.tag == "EnemyShot")
         {
